@@ -16,7 +16,7 @@ with open("admins.txt", "r") as admins_txt:
     admins_list = [i.replace("\n","") for i in admins_list]
 
 # Connect to Scratch
-project_id = 669020072
+project_id = 1142397629
 
 session =  sa.login_by_id(session_id=session_id, username='Stedify')  # Update with your session ID and username
 cloud = session.connect_cloud(project_id)  # Update with your project ID
@@ -107,7 +107,7 @@ def check_for_admin_comments():
         command = content.split(' ')
 
         if command[0] == '$set' and len(command) == 3:
-            if (not commentor.lower() == str(command[1].lower())) or commentor.lower() == "yippymishy":
+            if (not commentor.lower() == str(command[1].lower())) or commentor.lower() == "Stedify":
                 try:
                     set_balance(str(command[1]).lower(), float(command[2]))
                 except ValueError:
