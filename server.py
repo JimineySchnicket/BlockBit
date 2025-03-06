@@ -1,5 +1,5 @@
 # Import the necessary modules
-import scratchattach as scratch3
+import scratchattach as sa
 from local_simple_database import LocalDictDatabase
 import ast
 import time
@@ -18,11 +18,19 @@ with open("admins.txt", "r") as admins_txt:
 # Connect to Scratch
 project_id = 669020072
 
-session = scratch3.Session(session_id=session_id, username='yippymishyTest')  # Update with your session ID and username
-print('Logged in as ' + session.get_linked_user().username)
-conn = session.connect_cloud(project_id)  # Update with your project ID
-client = scratch3.CloudRequests(conn, used_cloud_vars=["1", "2", "3"])
+session =  sa.login_by_id(session_id=session_id, username='Stedify')  # Update with your session ID and username
+cloud = session.connect_cloud(project_id)  # Update with your project ID
+# assuming you are trying to fetch cloud variables "1", "2", "3"
+client = cloud.get_var(var="1")
+client2 = cloud.get_var(var="2")
+client3 = cloud.get_var(var="3")
 
+# To combine the results, you can use a dictionary
+client = {
+  "1": cloud.get_var(var="1"),
+  "2": cloud.get_var(var="2"),
+  "3": cloud.get_var(var="3"),
+}
 # Setup database
 LDD = LocalDictDatabase(str_path_database_dir=".", default_value=None)
 
